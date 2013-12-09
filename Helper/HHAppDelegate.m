@@ -1,26 +1,33 @@
 //
-//  HHAppDelegate.m
-//  Helper
+//  AppDelegate.m
+//  HelpingHand
 //
-//  Created by Leah Dorner on 12/7/13.
-//  Copyright (c) 2013 Leah Dorner. All rights reserved.
+//  Created by bgbb on 12/6/13.
+//  Copyright (c) 2013 HelpingHand. All rights reserved.
 //
 
 #import "HHAppDelegate.h"
+#import "HHSplashViewController.h"
+#import "HHSplashViewController.h"
 
 @implementation HHAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-        UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-        splitViewController.delegate = (id)navigationController.topViewController;
-    }
+    HHSplashViewController *splash = [[HHSplashViewController alloc] initWithNibName:NULL bundle:NULL];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:splash];
+    self.window.rootViewController = nvc;
+    nvc.navigationBarHidden = YES;
+
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
     return YES;
+    
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -29,7 +36,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
